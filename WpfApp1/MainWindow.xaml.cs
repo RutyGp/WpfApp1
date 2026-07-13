@@ -15,10 +15,56 @@ namespace WpfApp1
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
+    {        
+            public MainWindow()
+            {
+               InitializeComponent();
+            }
+
+            // פונקציה זו מופעלת בכל פעם שהמשתמש לוחץ על כפתור ה"הוסף"
+            private void AddButton_Click(object sender, RoutedEventArgs e)
+            {
+         //   1.בדיקת תקינות: ודואגים שהמשתמש לא מנסה להוסיף משימה ריקה
+                string taskText = NewTaskTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(taskText))
+            {
+                MessageBox.Show("אנא הקלד תיאור למשימה.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // 2. חילוץ רמת הדחיפות שנבחרה מה-ComboBox
+            ComboBoxItem selectedUrgency = (ComboBoxItem)UrgencyComboBox.SelectedItem;
+            string urgencyText = selectedUrgency.Content.ToString();
+            
+            // 3. יצירת הפקדים החדשים באופן דינמי
+
+            // יצירת StackPanel אופקי שיאגד את המשימה הספציפית הזו
+            StackPanel taskPanel = new StackPanel();
+            taskPanel.Orientation = Orientation.Horizontal;
+            taskPanel.Margin = new Thickness(5);
+
+            // יצירת תיבת הסימון (CheckBox)
+            CheckBox taskCheckBox = new CheckBox();
+            taskCheckBox.VerticalAlignment = VerticalAlignment.Center;
+            taskCheckBox.Margin = new Thickness(0, 0, 10, 0);
+
+            // יצירת ה-TextBlock שיציג את שם המשימה והדחיפות
+            TextBlock taskTextBlock = new TextBlock();
+            taskTextBlock.Text = $"{taskText} (דחיפות: {urgencyText})";
+            taskTextBlock.FontSize = 14;
+            taskTextBlock.VerticalAlignment = VerticalAlignment.Center;
+
+            // 4. הרכבת הפקדים: הוספת ה-CheckBox וה-TextBlock אל תוך ה-StackPanel האופקי
+            taskPanel.Children.Add(taskCheckBox);
+            taskPanel.Children.Add(taskTextBlock);
+
+            // 5. הוספת המשימה השלמה אל תוך רשימת המשימות הראשית במסך (XAML)
+            TasksContainer.Children.Add(taskPanel);
+
+            // 6. איפוס וניקוי שדה הקלט כדי להכין אותו למשימה הבאה
+            NewTaskTextBox.Clear();
+            NewTaskTextBox.Focus(); // מחזיר את הסמן האוטומטי לתיבת הטקסט
+        }
+
         }
     }
-}
