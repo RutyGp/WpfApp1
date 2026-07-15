@@ -19,7 +19,8 @@ namespace WpfApp1
     {
         //
         List<MyTask> tasks = new List<MyTask>();
-        List<string> cityList = new List<string>()  { "נמוכה", "בינונית", "גבוהה" };
+        List<string> cityList = new List<string>()  { "תל אביב", "חיפה", "ירושלים" };
+        List<Contacts> contacts = new List<Contacts>();
         List<ComboBoxItem> cityComboBoxList = new List<ComboBoxItem>();
         DateTime? selectedDate = null;   
             public MainWindow()
@@ -33,8 +34,14 @@ namespace WpfApp1
 
             }
                 
-               UrgencyComboBox.ItemsSource = cityComboBoxList;
-            }
+            UrgencyComboBox.ItemsSource = cityComboBoxList;
+
+            contacts.Add(new Contacts() { Name = "דוד", City = "תל אביב", BornDate = new DateTime(1990, 1, 1), IsFavorite = true });
+            contacts.Add(new Contacts() { Name = "שרה", City = "חיפה", BornDate = new DateTime(1985, 5, 15), IsFavorite = false });
+            contacts.Add(new Contacts() { Name = "יוסי", City = "ירושלים", BornDate = new DateTime(2000, 12, 30), IsFavorite = true });
+            contactsLV.ItemsSource=contacts;
+
+        }
 
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

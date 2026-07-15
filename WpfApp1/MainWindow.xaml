@@ -8,45 +8,34 @@
         Title="מנהל המשימות שלי" Height="450" Width="600"
         FlowDirection="RightToLeft">
 
-        <Grid Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,0,0,15">
-                <Image Source="/Pictures/CLOCK.jpg" Width="150" Height="150" HorizontalAlignment="Center" Margin="0,0,0,5" />
-                <TextBlock Text="מנהל המשימות שלי" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="משימות פעילות" Width="120" Margin="5" Padding="5"/>
-                    <Button Content="משימות שהסתיימו" Width="120" Margin="5" Padding="5"/>
-                </StackPanel>
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,0,0,15">
+            <Image Source="/Pictures/CLOCK.jpg" Width="150" Height="150" HorizontalAlignment="Center" Margin="0,0,0,5" />
+            <TextBlock Text="מנהל המשימות שלי" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="משימות פעילות" Width="120" Margin="5" Padding="5"/>
+                <Button Content="משימות שהסתיימו" Width="120" Margin="5" Padding="5"/>
             </StackPanel>
-
-            <Border Grid.Row="1" Background="#F9F9F9" CornerRadius="5" BorderBrush="#E0E0E0" BorderThickness="1" Padding="10" Margin="0,0,0,15">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <!--<StackPanel x:Name="TasksContainer" Orientation="Vertical">-->
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+          
+            <Border  Background="#F9F9F9" CornerRadius="5" BorderBrush="#E0E0E0" BorderThickness="1" Padding="10" Margin="0,0,0,15">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <!--<StackPanel x:Name="TasksContainer" Orientation="Vertical">-->
                 <StackPanel Margin="20" FlowDirection="RightToLeft" x:Name="TasksContainer" Orientation="Vertical">
-                        <TextBlock Text="רשימת משימות:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
+                    <TextBlock Text="רשימת משימות:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
 
-                        <!--<ListView x:Name="MyTasksListView" Height="200" >
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Margin="5">
 
-                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="DarkBlue" Width="150" />
-
-                                        <TextBlock Text="{Binding Urgency}" Foreground="Gray" Width="100" />
-
-                                        <TextBlock Text="{Binding DueDate}" Width="80" />
-                                        
-                                        <TextBlock Text="{Binding IsComleted}" Width="80" />
-
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>-->
 
                     <ListView x:Name="MyTasksListView" Height="200" >
                         <ListView.ItemTemplate>
@@ -66,16 +55,16 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackPanel>
-                    <!--<StackPanel Orientation="Horizontal" Margin="5">
-                            <CheckBox VerticalAlignment="Center" Margin="0,0,10,0"/>
-                            <TextBlock Text="לקנות חלב (דחיפות: גבוהה)" FontSize="14" VerticalAlignment="Center"/>
-                        </StackPanel>-->
 
-                    <!--</StackPanel>-->
-                </ScrollViewer>
-            </Border>
+            </ScrollViewer>
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
+        </Border>
+
+
+
+           
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,5">
                 <TextBlock Text="משימה חדשה:" VerticalAlignment="Center" FontSize="14" Margin="0,0,10,0"/>
                 <TextBox x:Name="newTaskTextBox"
                          Width="200" Height="25" 
@@ -94,8 +83,30 @@
             <Calendar  x:Name="taskCalander" Visibility="Collapsed"  SelectedDatesChanged="DateWasChoosed"/>
             <!--#endregion-->
         </StackPanel>
+        <Border   Grid.Column="1" Grid.RowSpan="2" Grid.Row="1">
+            <StackPanel x:Name="contactsSp">
+                <ListView x:Name="contactsLV" Background="Crimson">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5">
 
-        </Grid>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="DarkBlue" Width="150" VerticalAlignment="Center" />
+
+                                <TextBlock Text="{Binding City}" Foreground="Gray" Width="100" VerticalAlignment="Center" />
+
+                                <TextBlock Text="{Binding BornDate, StringFormat={}{0:dd/MM/yyyy}}" Foreground="Gray" Width="100" VerticalAlignment="Center" />
+
+                                <TextBlock Text="{Binding IsFavorite}" Foreground="Gray" Width="100" VerticalAlignment="Center" />
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackPanel>
+
+        </Border>
+    </Grid>
     </Window>
 
 
