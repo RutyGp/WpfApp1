@@ -102,6 +102,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                
+                <Button Content="usercontrol" Width="50" Height="30" Margin="5" Click="GoToUserControlWindow_Click" />
 
             </StackPanel>
 

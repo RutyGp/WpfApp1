@@ -184,6 +184,12 @@ namespace WpfApp1
             selectedDate = taskCalander.SelectedDate;  
         }
 
+        private void GoToUserControlWindow_Click(object sender, RoutedEventArgs e)
+        {
+            UserControlWindow userContWindow = new UserControlWindow();
+            userContWindow.Show();
+        }
+
         //private void MyTasksSelected(object sender, SelectionChangedEventArgs e)
         //{
         //   MyTask currentTask= (MyTask)MyTasksListView.SelectedItem;
